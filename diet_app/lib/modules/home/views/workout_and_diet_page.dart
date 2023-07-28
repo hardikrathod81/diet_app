@@ -1,5 +1,7 @@
 import 'package:diet_app/core/app_colors.dart';
 import 'package:diet_app/core/app_images.dart';
+import 'package:diet_app/modules/dietpages/views/diet_page.dart';
+import 'package:diet_app/modules/workoutpage/views/workout_page.dart';
 import 'package:diet_app/widgets/app_widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:table_calendar/table_calendar.dart';
@@ -163,7 +165,8 @@ class _WorkOutAndDietPageState extends State<WorkOutAndDietPage>
                     ),
                     SliverToBoxAdapter(
                       child: TableCalendar(
-                          formatAnimationDuration: const Duration(milliseconds: 500),
+                          formatAnimationDuration:
+                              const Duration(milliseconds: 500),
                           calendarFormat: _onTap
                               ? CalendarFormat.week
                               : CalendarFormat.month,
@@ -262,7 +265,9 @@ class _WorkOutAndDietPageState extends State<WorkOutAndDietPage>
                           padding: const EdgeInsets.symmetric(horizontal: 10),
                           child: AppButton(
                               value: 'Go t workout page',
-                              onPressed: () {},
+                              onPressed: () {
+                                Navigator.push(context, WorkOutPage.route());
+                              },
                               backgroundColor: AppColors.orange),
                         )),
                   ),
@@ -340,7 +345,9 @@ class _WorkOutAndDietPageState extends State<WorkOutAndDietPage>
                           padding: const EdgeInsets.symmetric(horizontal: 10),
                           child: AppButton(
                               value: 'Go to diet page',
-                              onPressed: () {},
+                              onPressed: () {
+                                Navigator.push(context, DietPage.route());
+                              },
                               backgroundColor: AppColors.orange),
                         )),
                   ),

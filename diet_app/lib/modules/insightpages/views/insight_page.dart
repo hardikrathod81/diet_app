@@ -1,5 +1,6 @@
 import 'package:diet_app/core/app_colors.dart';
 import 'package:diet_app/core/app_images.dart';
+
 import 'package:diet_app/widgets/app_widgets.dart';
 import 'package:flutter/material.dart';
 
@@ -32,21 +33,23 @@ class _InsightPageState extends State<InsightPage>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: SafeArea(
-      child: Column(
-        children: [
-          const Row(
-            mainAxisAlignment: MainAxisAlignment.center,
+      body: SafeArea(
+        child: NestedScrollView(
+          headerSliverBuilder: (context, innerBoxIsScrolled) {
+            return [
+              SliverAppBar(
+                backgroundColor: AppColors.white,
+                expandedHeight: MediaQuery.sizeOf(context).height * 0.3,
+                automaticallyImplyLeading: false,
+                flexibleSpace: const FlexibleSpaceBar(),
+              )
+            ];
+          },
+          body: Column(
             children: [
-              TextWidget(text: 'Insight'),
-            ],
-          ),
-          Padding(
-            padding: const EdgeInsets.only(top: 300),
-            child: Container(
-              margin: const EdgeInsets.all(15),
-              height: MediaQuery.sizeOf(context).height * 0.04,
-              child: Container(
+              Container(
+                margin: const EdgeInsets.all(15),
+                height: MediaQuery.sizeOf(context).height * 0.04,
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(40),
                     color: AppColors.white,
@@ -57,526 +60,574 @@ class _InsightPageState extends State<InsightPage>
                       ),
                     ]),
                 child: TabBar(
-                    indicatorSize: TabBarIndicatorSize.tab,
-                    controller: _tabController,
-                    unselectedLabelColor: AppColors.black,
-                    dividerColor: AppColors.orange,
-                    indicator: BoxDecoration(
-                        borderRadius: BorderRadius.circular(40),
-                        color: AppColors.orange),
-                    tabs: const [
-                      SwapIndictor(fontsize: 13, text: 'Workout'),
-                      SwapIndictor(
-                        text: 'Diet',
-                        fontsize: 13,
-                      ),
-                      SwapIndictor(
-                        text: 'Sleep',
-                        fontsize: 13,
-                      ),
-                      SwapIndictor(
-                        text: 'Water',
-                        fontsize: 13,
-                      )
-                    ]),
-              ),
-            ),
-          ),
-          Expanded(
-              child: TabBarView(controller: _tabController, children: [
-            SingleChildScrollView(
-              child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 10),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.only(top: 30, bottom: 30),
-                      child: CommonContainer(
-                          child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          const Padding(
-                            padding: EdgeInsets.symmetric(
-                                horizontal: 10, vertical: 20),
-                            child: TextWidget(text: 'Calories'),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.only(
-                                left: 10, right: 10, bottom: 20),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                SizedBox(
-                                  height:
-                                      MediaQuery.sizeOf(context).height * 0.05,
-                                  child: const Column(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
-                                    children: [
-                                      TextWidgetTitleWorkoutandDiet(
-                                        text: 'Burn',
-                                        fontSize: 14,
-                                        color: AppColors.black,
-                                      ),
-                                      TextWidgetTitleWorkoutandDiet(
-                                          text: '900',
-                                          fontSize: 15,
-                                          color: AppColors.gray)
-                                    ],
-                                  ),
-                                ),
-                                const GrayDivider(),
-                                SizedBox(
-                                  height:
-                                      MediaQuery.sizeOf(context).height * 0.05,
-                                  child: const Column(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
-                                    children: [
-                                      TextWidgetTitleWorkoutandDiet(
-                                        text: 'Target',
-                                        fontSize: 14,
-                                        color: AppColors.black,
-                                      ),
-                                      TextWidgetTitleWorkoutandDiet(
-                                          text: '1300',
-                                          fontSize: 15,
-                                          color: AppColors.gray)
-                                    ],
-                                  ),
-                                ),
-                                const GrayDivider(),
-                                SizedBox(
-                                  height:
-                                      MediaQuery.sizeOf(context).height * 0.05,
-                                  child: const Column(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
-                                    children: [
-                                      TextWidgetTitleWorkoutandDiet(
-                                        text: 'Left',
-                                        fontSize: 14,
-                                        color: AppColors.black,
-                                      ),
-                                      TextWidgetTitleWorkoutandDiet(
-                                          text: '400',
-                                          fontSize: 15,
-                                          color: AppColors.orange)
-                                    ],
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                        ],
-                      )),
+                  indicatorSize: TabBarIndicatorSize.tab,
+                  controller: _tabController,
+                  unselectedLabelColor: AppColors.black,
+                  dividerColor: AppColors.orange,
+                  indicator: BoxDecoration(
+                      borderRadius: BorderRadius.circular(40),
+                      color: AppColors.orange),
+                  tabs: const [
+                    SwapIndictor(fontsize: 13, text: 'Workout'),
+                    SwapIndictor(
+                      text: 'Diet',
+                      fontsize: 13,
                     ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        SizedBox(
-                          width: MediaQuery.sizeOf(context).width * 0.45,
-                          child: const CommonIconWidget(
-                            icon: Icon(
-                              Icons.sports_handball_outlined,
-                              size: 100,
-                              color: AppColors.orange,
-                            ),
-                            iconname: 'Total Workouts',
-                            number: '15',
-                          ),
-                        ),
-                        SizedBox(
-                          width: MediaQuery.sizeOf(context).width * 0.45,
-                          child: const CommonIconWidget(
-                              icon: Icon(
-                                Icons.watch_outlined,
-                                size: 100,
-                                color: AppColors.orange,
-                              ),
-                              iconname: 'Net Duratiom',
-                              number: '50min'),
-                        )
-                      ],
+                    SwapIndictor(
+                      text: 'Sleep',
+                      fontsize: 13,
                     ),
-                  ],
-                ),
-              ),
-            ),
-            SingleChildScrollView(
-              child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 10),
-                child: Column(
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.only(top: 30, bottom: 30),
-                      child: CommonContainer(
-                          child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          const Padding(
-                            padding: EdgeInsets.symmetric(
-                                horizontal: 10, vertical: 20),
-                            child: TextWidget(text: 'Calories'),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.only(
-                                left: 10, right: 10, bottom: 20),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                SizedBox(
-                                  height:
-                                      MediaQuery.sizeOf(context).height * 0.05,
-                                  child: const Column(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
-                                    children: [
-                                      TextWidgetTitleWorkoutandDiet(
-                                        text: 'Taken',
-                                        fontSize: 14,
-                                        color: AppColors.black,
-                                      ),
-                                      TextWidgetTitleWorkoutandDiet(
-                                          text: '700',
-                                          fontSize: 15,
-                                          color: AppColors.gray)
-                                    ],
-                                  ),
-                                ),
-                                const GrayDivider(),
-                                SizedBox(
-                                  height:
-                                      MediaQuery.sizeOf(context).height * 0.05,
-                                  child: const Column(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
-                                    children: [
-                                      TextWidgetTitleWorkoutandDiet(
-                                        text: 'Target',
-                                        fontSize: 14,
-                                        color: AppColors.black,
-                                      ),
-                                      TextWidgetTitleWorkoutandDiet(
-                                          text: '1300',
-                                          fontSize: 15,
-                                          color: AppColors.gray),
-                                    ],
-                                  ),
-                                ),
-                                const GrayDivider(),
-                                SizedBox(
-                                  height:
-                                      MediaQuery.sizeOf(context).height * 0.05,
-                                  child: const Column(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
-                                    children: [
-                                      TextWidgetTitleWorkoutandDiet(
-                                        text: 'Left',
-                                        fontSize: 14,
-                                        color: AppColors.black,
-                                      ),
-                                      TextWidgetTitleWorkoutandDiet(
-                                          text: '600',
-                                          fontSize: 15,
-                                          color: AppColors.orange)
-                                    ],
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                        ],
-                      )),
-                    ),
-                    const Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        ComponetsOfIcons(
-                            icon: Icon(
-                              Icons.health_and_safety_outlined,
-                              color: AppColors.orange,
-                              size: 80,
-                            ),
-                            name: 'Calories',
-                            number: '560'),
-                        ComponetsOfIcons(
-                            icon: Icon(
-                              Icons.where_to_vote_outlined,
-                              color: AppColors.orange,
-                              size: 80,
-                            ),
-                            name: 'Protein',
-                            number: '150'),
-                        ComponetsOfIcons(
-                          icon: Icon(
-                            Icons.fastfood_sharp,
-                            color: AppColors.orange,
-                            size: 80,
-                          ),
-                          name: 'Fat',
-                          number: '180',
-                        ),
-                      ],
+                    SwapIndictor(
+                      text: 'Water',
+                      fontsize: 13,
                     )
                   ],
                 ),
               ),
-            ),
-            SingleChildScrollView(
-              child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 10),
-                child: Column(
+              Expanded(
+                child: TabBarView(
+                  controller: _tabController,
                   children: [
-                    const Padding(
-                      padding: EdgeInsets.only(top: 30),
-                      child: AspectRatio(
-                        aspectRatio: 2.5,
-                        child: CommonContainer(
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Column(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceAround,
+                    SingleChildScrollView(
+                      physics: const BouncingScrollPhysics(),
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 10),
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            Padding(
+                              padding:
+                                  const EdgeInsets.only(top: 30, bottom: 30),
+                              child: CommonContainer(
+                                  child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                  SleepIconsComponets(
-                                    text1: 'Woken Up',
-                                    text2: '7:43',
-                                    text3: 'am',
+                                  const Padding(
+                                    padding: EdgeInsets.symmetric(
+                                        horizontal: 10, vertical: 20),
+                                    child: TextWidget(text: 'Calories'),
                                   ),
-                                  SleepIconsComponets(
-                                      text1: 'Went to Sleep',
-                                      text2: '11:30',
-                                      text3: 'pm')
-                                ],
-                              ),
-                              Padding(
-                                padding: EdgeInsets.only(
-                                    left: 20, top: 20, bottom: 20),
-                                child: VerticalDivider(
-                                  thickness: 3,
-                                  color: AppColors.gray,
-                                ),
-                              ),
-                              Padding(
-                                padding: EdgeInsets.symmetric(vertical: 15),
-                                child: Column(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    Column(
+                                  Padding(
+                                    padding: const EdgeInsets.only(
+                                        left: 10, right: 10, bottom: 20),
+                                    child: Row(
                                       mainAxisAlignment:
                                           MainAxisAlignment.spaceBetween,
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.center,
                                       children: [
-                                        TextWidgetTitle(
-                                            text: '37%',
-                                            fontSize: 25,
-                                            color: AppColors.orange),
-                                        TextWidgetTitle(
-                                          text: 'Reduced',
-                                          fontSize: 17,
-                                          color: AppColors.black,
-                                        )
+                                        SizedBox(
+                                          height: MediaQuery.sizeOf(context)
+                                                  .height *
+                                              0.05,
+                                          child: const Column(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.spaceBetween,
+                                            children: [
+                                              TextWidgetTitleWorkoutandDiet(
+                                                text: 'Burn',
+                                                fontSize: 14,
+                                                color: AppColors.black,
+                                              ),
+                                              TextWidgetTitleWorkoutandDiet(
+                                                  text: '900',
+                                                  fontSize: 15,
+                                                  color: AppColors.gray)
+                                            ],
+                                          ),
+                                        ),
+                                        const GrayDivider(),
+                                        SizedBox(
+                                          height: MediaQuery.sizeOf(context)
+                                                  .height *
+                                              0.05,
+                                          child: const Column(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.spaceBetween,
+                                            children: [
+                                              TextWidgetTitleWorkoutandDiet(
+                                                text: 'Target',
+                                                fontSize: 14,
+                                                color: AppColors.black,
+                                              ),
+                                              TextWidgetTitleWorkoutandDiet(
+                                                  text: '1300',
+                                                  fontSize: 15,
+                                                  color: AppColors.gray)
+                                            ],
+                                          ),
+                                        ),
+                                        const GrayDivider(),
+                                        SizedBox(
+                                          height: MediaQuery.sizeOf(context)
+                                                  .height *
+                                              0.05,
+                                          child: const Column(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.spaceBetween,
+                                            children: [
+                                              TextWidgetTitleWorkoutandDiet(
+                                                text: 'Left',
+                                                fontSize: 14,
+                                                color: AppColors.black,
+                                              ),
+                                              TextWidgetTitleWorkoutandDiet(
+                                                  text: '400',
+                                                  fontSize: 15,
+                                                  color: AppColors.orange)
+                                            ],
+                                          ),
+                                        ),
                                       ],
                                     ),
-                                    Padding(
-                                      padding: EdgeInsets.only(bottom: 5),
-                                      child: Text(
-                                        'Sleep time compare \nto last week',
-                                        style: TextStyle(
-                                            fontSize: 15,
-                                            color: AppColors.black,
-                                            fontFamily: 'inter',
-                                            fontWeight: FontWeight.w700),
-                                        textAlign: TextAlign.center,
-                                      ),
-                                    )
-                                  ],
-                                ),
-                              )
-                            ],
-                          ),
-                        ),
-                      ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(vertical: 30),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          SizedBox(
-                            width: MediaQuery.sizeOf(context).width * 0.43,
-                            child: const CommonIconWidget(
-                                icon: Icon(
-                                  Icons.watch,
-                                  color: AppColors.orange,
-                                  size: 100,
-                                ),
-                                iconname: 'Total Sleep Durtion',
-                                number: '08:04'),
-                          ),
-                          SizedBox(
-                            width: MediaQuery.sizeOf(context).width * 0.43,
-                            child: const CommonIconWidget(
-                                icon: Icon(
-                                  Icons.bedroom_child_outlined,
-                                  size: 100,
-                                  color: AppColors.orange,
-                                ),
-                                iconname: 'Deep',
-                                number: '03:43'),
-                          )
-                        ],
-                      ),
-                    )
-                  ],
-                ),
-              ),
-            ),
-            SingleChildScrollView(
-              child: Padding(
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 10, vertical: 30),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        const CommonContainer(
-                          child: Padding(
-                            padding: EdgeInsets.symmetric(
-                                horizontal: 10, vertical: 10),
-                            child: Row(
+                                  ),
+                                ],
+                              )),
+                            ),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
-                                Column(
-                                  children: [
-                                    waterCommonWidget(
-                                      text1: "Taken",
-                                      text2: "2000",
-                                      text3: "ml",
+                                SizedBox(
+                                  width:
+                                      MediaQuery.sizeOf(context).width * 0.45,
+                                  child: const CommonIconWidget(
+                                    icon: Icon(
+                                      Icons.sports_handball_outlined,
+                                      size: 100,
+                                      color: AppColors.orange,
                                     ),
-                                    Padding(
-                                      padding: EdgeInsets.all(8.0),
-                                      child: waterCommonWidget(
-                                          text1: 'Target',
-                                          text2: '3000',
-                                          text3: 'ml'),
-                                    )
-                                  ],
+                                    iconname: 'Total Workouts',
+                                    number: '15',
+                                  ),
+                                ),
+                                SizedBox(
+                                  width:
+                                      MediaQuery.sizeOf(context).width * 0.45,
+                                  child: const CommonIconWidget(
+                                      icon: Icon(
+                                        Icons.watch_outlined,
+                                        size: 100,
+                                        color: AppColors.orange,
+                                      ),
+                                      iconname: 'Net Duratiom',
+                                      number: '50min'),
                                 )
                               ],
                             ),
-                          ),
+                          ],
                         ),
-                        CommonContainer(
-                            child: Column(
+                      ),
+                    ),
+                    SingleChildScrollView(
+                      physics: const BouncingScrollPhysics(),
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 10),
+                        child: Column(
                           children: [
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceAround,
+                            Padding(
+                              padding:
+                                  const EdgeInsets.only(top: 30, bottom: 30),
+                              child: CommonContainer(
+                                  child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  const Padding(
+                                    padding: EdgeInsets.symmetric(
+                                        horizontal: 10, vertical: 20),
+                                    child: TextWidget(text: 'Calories'),
+                                  ),
+                                  Padding(
+                                    padding: const EdgeInsets.only(
+                                        left: 10, right: 10, bottom: 20),
+                                    child: Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        SizedBox(
+                                          height: MediaQuery.sizeOf(context)
+                                                  .height *
+                                              0.05,
+                                          child: const Column(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.spaceBetween,
+                                            children: [
+                                              TextWidgetTitleWorkoutandDiet(
+                                                text: 'Taken',
+                                                fontSize: 14,
+                                                color: AppColors.black,
+                                              ),
+                                              TextWidgetTitleWorkoutandDiet(
+                                                  text: '700',
+                                                  fontSize: 15,
+                                                  color: AppColors.gray)
+                                            ],
+                                          ),
+                                        ),
+                                        const GrayDivider(),
+                                        SizedBox(
+                                          height: MediaQuery.sizeOf(context)
+                                                  .height *
+                                              0.05,
+                                          child: const Column(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.spaceBetween,
+                                            children: [
+                                              TextWidgetTitleWorkoutandDiet(
+                                                text: 'Target',
+                                                fontSize: 14,
+                                                color: AppColors.black,
+                                              ),
+                                              TextWidgetTitleWorkoutandDiet(
+                                                  text: '1300',
+                                                  fontSize: 15,
+                                                  color: AppColors.gray),
+                                            ],
+                                          ),
+                                        ),
+                                        const GrayDivider(),
+                                        SizedBox(
+                                          height: MediaQuery.sizeOf(context)
+                                                  .height *
+                                              0.05,
+                                          child: const Column(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.spaceBetween,
+                                            children: [
+                                              TextWidgetTitleWorkoutandDiet(
+                                                text: 'Left',
+                                                fontSize: 14,
+                                                color: AppColors.black,
+                                              ),
+                                              TextWidgetTitleWorkoutandDiet(
+                                                  text: '600',
+                                                  fontSize: 15,
+                                                  color: AppColors.orange)
+                                            ],
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ],
+                              )),
+                            ),
+                            const Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
-                                Container(
-                                  height:
-                                      MediaQuery.sizeOf(context).height * 0.04,
-                                  width:
-                                      MediaQuery.sizeOf(context).width * 0.09,
-                                  decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(10),
-                                      color: _iconOnTap
-                                          ? AppColors.orange
-                                          : AppColors.gray),
-                                  child: IconButton(
-                                      onPressed: () {
-                                        setState(() {
-                                          _iconOnTap = !_iconOnTap;
-                                        });
-                                      },
-                                      icon: const Icon(
-                                        Icons.remove,
-                                        size: 19,
-                                        color: AppColors.white,
-                                      )),
-                                ),
-                                SizedBox(
-                                    height:
-                                        MediaQuery.sizeOf(context).height * 0.1,
-                                    child: Image.asset(AppImage.watericon)),
-                                Container(
-                                  height:
-                                      MediaQuery.sizeOf(context).height * 0.04,
-                                  width:
-                                      MediaQuery.sizeOf(context).width * 0.09,
-                                  decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(10),
-                                      color: _iconOnTap
-                                          ? AppColors.orange
-                                          : AppColors.gray),
-                                  child: IconButton(
-                                      onPressed: () {
-                                        setState(() {
-                                          _iconOnTap = !_iconOnTap;
-                                        });
-                                      },
-                                      icon: const Icon(
-                                        Icons.add,
-                                        size: 19,
-                                        color: AppColors.white,
-                                      )),
+                                ComponetsOfIcons(
+                                    icon: Icon(
+                                      Icons.health_and_safety_outlined,
+                                      color: AppColors.orange,
+                                      size: 80,
+                                    ),
+                                    name: 'Calories',
+                                    number: '560'),
+                                ComponetsOfIcons(
+                                    icon: Icon(
+                                      Icons.where_to_vote_outlined,
+                                      color: AppColors.orange,
+                                      size: 80,
+                                    ),
+                                    name: 'Protein',
+                                    number: '150'),
+                                ComponetsOfIcons(
+                                  icon: Icon(
+                                    Icons.fastfood_sharp,
+                                    color: AppColors.orange,
+                                    size: 80,
+                                  ),
+                                  name: 'Fat',
+                                  number: '180',
                                 ),
                               ],
+                            )
+                          ],
+                        ),
+                      ),
+                    ),
+                    SingleChildScrollView(
+                      physics: const BouncingScrollPhysics(),
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 10),
+                        child: Column(
+                          children: [
+                            const Padding(
+                              padding: EdgeInsets.only(top: 30),
+                              child: AspectRatio(
+                                aspectRatio: 2.5,
+                                child: CommonContainer(
+                                  child: Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Column(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceAround,
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: [
+                                          SleepIconsComponets(
+                                            text1: 'Woken Up',
+                                            text2: '7:43',
+                                            text3: 'am',
+                                          ),
+                                          SleepIconsComponets(
+                                              text1: 'Went to Sleep',
+                                              text2: '11:30',
+                                              text3: 'pm')
+                                        ],
+                                      ),
+                                      Padding(
+                                        padding: EdgeInsets.only(
+                                            left: 20, top: 20, bottom: 20),
+                                        child: VerticalDivider(
+                                          thickness: 3,
+                                          color: AppColors.gray,
+                                        ),
+                                      ),
+                                      Padding(
+                                        padding:
+                                            EdgeInsets.symmetric(vertical: 15),
+                                        child: Column(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceBetween,
+                                          children: [
+                                            Column(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment
+                                                      .spaceBetween,
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.center,
+                                              children: [
+                                                TextWidgetTitle(
+                                                    text: '37%',
+                                                    fontSize: 25,
+                                                    color: AppColors.orange),
+                                                TextWidgetTitle(
+                                                  text: 'Reduced',
+                                                  fontSize: 17,
+                                                  color: AppColors.black,
+                                                )
+                                              ],
+                                            ),
+                                            Padding(
+                                              padding:
+                                                  EdgeInsets.only(bottom: 5),
+                                              child: Text(
+                                                'Sleep time compare \nto last week',
+                                                style: TextStyle(
+                                                    fontSize: 15,
+                                                    color: AppColors.black,
+                                                    fontFamily: 'inter',
+                                                    fontWeight:
+                                                        FontWeight.w700),
+                                                textAlign: TextAlign.center,
+                                              ),
+                                            )
+                                          ],
+                                        ),
+                                      )
+                                    ],
+                                  ),
+                                ),
+                              ),
                             ),
                             Padding(
-                              padding: const EdgeInsets.symmetric(vertical: 15),
-                              child: Container(
-                                height:
-                                    MediaQuery.sizeOf(context).height * 0.03,
-                                width: MediaQuery.sizeOf(context).width * 0.3,
-                                decoration: const BoxDecoration(
-                                    borderRadius:
-                                        BorderRadius.all(Radius.circular(8)),
-                                    color: AppColors.orange),
-                                child: const Row(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    Icon(
-                                      Icons.water_drop_outlined,
-                                      color: AppColors.white,
-                                      size: 15,
-                                    ),
-                                    Text(
-                                      'Add Drink',
-                                      style: TextStyle(
-                                          color: AppColors.white,
-                                          fontWeight: FontWeight.w500,
-                                          fontSize: 13),
-                                    )
-                                  ],
-                                ),
+                              padding: const EdgeInsets.symmetric(vertical: 30),
+                              child: Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  SizedBox(
+                                    width:
+                                        MediaQuery.sizeOf(context).width * 0.43,
+                                    child: const CommonIconWidget(
+                                        icon: Icon(
+                                          Icons.watch,
+                                          color: AppColors.orange,
+                                          size: 100,
+                                        ),
+                                        iconname: 'Total Sleep Durtion',
+                                        number: '08:04'),
+                                  ),
+                                  SizedBox(
+                                    width:
+                                        MediaQuery.sizeOf(context).width * 0.43,
+                                    child: const CommonIconWidget(
+                                        icon: Icon(
+                                          Icons.bedroom_child_outlined,
+                                          size: 100,
+                                          color: AppColors.orange,
+                                        ),
+                                        iconname: 'Deep',
+                                        number: '03:43'),
+                                  )
+                                ],
                               ),
                             )
                           ],
-                        ))
-                      ],
+                        ),
+                      ),
                     ),
-                    const Padding(
-                      padding: EdgeInsets.symmetric(vertical: 20),
-                      child: TextWidget(text: 'Water Consume Statistics'),
+                    SingleChildScrollView(
+                      physics: const BouncingScrollPhysics(),
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 10, vertical: 30),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                const CommonContainer(
+                                  child: Padding(
+                                    padding: EdgeInsets.symmetric(
+                                        horizontal: 10, vertical: 10),
+                                    child: Row(
+                                      children: [
+                                        Column(
+                                          children: [
+                                            waterCommonWidget(
+                                              text1: "Taken",
+                                              text2: "2000",
+                                              text3: "ml",
+                                            ),
+                                            Padding(
+                                              padding: EdgeInsets.all(8.0),
+                                              child: waterCommonWidget(
+                                                  text1: 'Target',
+                                                  text2: '3000',
+                                                  text3: 'ml'),
+                                            )
+                                          ],
+                                        )
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                                CommonContainer(
+                                  child: Column(
+                                    children: [
+                                      Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceAround,
+                                        children: [
+                                          Container(
+                                            height: MediaQuery.sizeOf(context)
+                                                    .height *
+                                                0.04,
+                                            width: MediaQuery.sizeOf(context)
+                                                    .width *
+                                                0.09,
+                                            decoration: BoxDecoration(
+                                                borderRadius:
+                                                    BorderRadius.circular(10),
+                                                color: _iconOnTap
+                                                    ? AppColors.orange
+                                                    : AppColors.gray),
+                                            child: IconButton(
+                                                onPressed: () {
+                                                  setState(() {
+                                                    _iconOnTap = !_iconOnTap;
+                                                  });
+                                                },
+                                                icon: const Icon(
+                                                  Icons.remove,
+                                                  size: 19,
+                                                  color: AppColors.white,
+                                                )),
+                                          ),
+                                          SizedBox(
+                                              height: MediaQuery.sizeOf(context)
+                                                      .height *
+                                                  0.1,
+                                              child: Image.asset(
+                                                  AppImage.watericon)),
+                                          Container(
+                                            height: MediaQuery.sizeOf(context)
+                                                    .height *
+                                                0.04,
+                                            width: MediaQuery.sizeOf(context)
+                                                    .width *
+                                                0.09,
+                                            decoration: BoxDecoration(
+                                                borderRadius:
+                                                    BorderRadius.circular(10),
+                                                color: _iconOnTap
+                                                    ? AppColors.orange
+                                                    : AppColors.gray),
+                                            child: IconButton(
+                                              onPressed: () {
+                                                setState(() {
+                                                  _iconOnTap = !_iconOnTap;
+                                                });
+                                              },
+                                              icon: const Icon(
+                                                Icons.add,
+                                                size: 19,
+                                                color: AppColors.white,
+                                              ),
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                      Padding(
+                                        padding: const EdgeInsets.symmetric(
+                                            vertical: 15),
+                                        child: Container(
+                                          height: MediaQuery.sizeOf(context)
+                                                  .height *
+                                              0.03,
+                                          width:
+                                              MediaQuery.sizeOf(context).width *
+                                                  0.3,
+                                          decoration: const BoxDecoration(
+                                              borderRadius: BorderRadius.all(
+                                                  Radius.circular(8)),
+                                              color: AppColors.orange),
+                                          child: const Row(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.center,
+                                            children: [
+                                              Icon(
+                                                Icons.water_drop_outlined,
+                                                color: AppColors.white,
+                                                size: 15,
+                                              ),
+                                              Text(
+                                                'Add Drink',
+                                                style: TextStyle(
+                                                    color: AppColors.white,
+                                                    fontWeight: FontWeight.w500,
+                                                    fontSize: 13),
+                                              )
+                                            ],
+                                          ),
+                                        ),
+                                      )
+                                    ],
+                                  ),
+                                )
+                              ],
+                            ),
+                            const Padding(
+                              padding: EdgeInsets.symmetric(vertical: 20),
+                              child:
+                                  TextWidget(text: 'Water Consume Statistics'),
+                            )
+                          ],
+                        ),
+                      ),
                     )
                   ],
                 ),
               ),
-            )
-          ]))
-        ],
+            ],
+          ),
+        ),
       ),
-    ));
+    );
   }
 }
 

@@ -9,6 +9,11 @@ import 'diet_categories_3_page.dart';
 
 class DietPage extends StatefulWidget {
   const DietPage({super.key});
+  static MaterialPageRoute route() {
+    return MaterialPageRoute(
+      builder: (context) => const DietPage(),
+    );
+  }
 
   @override
   State<DietPage> createState() => _DietPageState();

@@ -20,4 +20,6 @@ abstract class AppImage {
   static const appleicon = 'assets/images/payment3.png';
   static const paypal = 'assets/images/payment1.png';
   static const mastercard = 'assets/images/payment2.png';
+  static const google = 'assets/images/google.png';
+  static const facebook = 'assets/images/facebook.png';
 }

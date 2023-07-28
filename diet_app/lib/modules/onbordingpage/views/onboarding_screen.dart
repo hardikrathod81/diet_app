@@ -1,6 +1,6 @@
+import 'package:diet_app/autication/views/sign_in_page.dart';
 import 'package:diet_app/core/app_colors.dart';
 import 'package:diet_app/core/app_images.dart';
-import 'package:diet_app/modules/home/home.dart';
 import 'package:diet_app/widgets/app_button.dart';
 import 'package:flutter/material.dart';
 import 'package:onboarding/onboarding.dart';
@@ -23,6 +23,7 @@ class OnboardingScreen extends StatefulWidget {
 
 class _OnboardingScreenState extends State<OnboardingScreen> {
   late int index;
+  int currentindex = 0;
 
   final onboardPageList = [
     PageModel(
@@ -141,35 +142,50 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColors.white,
-      body: Stack(children: [
-        Onboarding(
-          pages: onboardPageList,
-          startPageIndex: 0,
-          onPageChange: (int pageIndex) {
-            setState(() {
-              index = pageIndex;
-            });
-          },
-        ),
-        if (index == 3)
-          Positioned(
-            bottom: 150,
-            left: 30,
-            child: Padding(
-              padding: const EdgeInsets.only(top: 100),
-              child: SizedBox(
-                width: 150,
-                child: AppButton(
-                    value: 'Get Started',
-                    onPressed: () {
-                      Navigator.pushAndRemoveUntil(
-                          context, RootPage.route(), (route) => false);
-                    },
-                    backgroundColor: AppColors.orange),
-              ),
-            ),
-          )
-      ]),
+      body: Stack(
+        children: [
+          Onboarding(
+            pages: onboardPageList,
+            startPageIndex: 0,
+            onPageChange: (int pageIndex) {
+              setState(() {
+                currentindex = pageIndex;
+              });
+            },
+          ),
+          currentindex == 3
+              ? Positioned(
+                  bottom: 150,
+                  left: 30,
+                  child: Padding(
+                    padding: const EdgeInsets.only(top: 100),
+                    child: SizedBox(
+                      width: 150,
+                      child: AppButton(
+                          value: 'Get Started',
+                          onPressed: () {
+                            Navigator.pushAndRemoveUntil(
+                                context, SigninPage.route(), (route) => false);
+                          },
+                          backgroundColor: AppColors.orange),
+                    ),
+                  ),
+                )
+              : Positioned(
+                  bottom: 150,
+                  left: 30,
+                  child: Container(
+                    height: 10,
+                    width: currentindex == index ? 25 : 10,
+                    margin: const EdgeInsets.only(right: 5),
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(20),
+                      color: Colors.green,
+                    ),
+                  ),
+                ),
+        ],
+      ),
     );
   }
 }

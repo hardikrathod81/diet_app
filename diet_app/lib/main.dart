@@ -1,3 +1,4 @@
+import 'package:diet_app/core/app_colors.dart';
 import 'package:diet_app/modules/onbordingpage/onboarding.dart';
 import 'package:flutter/material.dart';
 
@@ -10,9 +11,10 @@ class DietApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: LogoPage(),
+      theme: ThemeData(scaffoldBackgroundColor: AppColors.white),
+      home: const LogoPage(),
     );
   }
 }
