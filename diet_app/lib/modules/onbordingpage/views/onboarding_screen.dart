@@ -155,7 +155,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
           ),
           currentindex == 3
               ? Positioned(
-                  bottom: 150,
+                  bottom: 140,
                   left: 30,
                   child: Padding(
                     padding: const EdgeInsets.only(top: 100),
@@ -172,16 +172,44 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                   ),
                 )
               : Positioned(
-                  bottom: 150,
                   left: 30,
-                  child: Container(
-                    height: 10,
-                    width: currentindex == index ? 25 : 10,
-                    margin: const EdgeInsets.only(right: 5),
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(20),
-                      color: Colors.green,
-                    ),
+                  bottom: 150,
+                  child: Row(
+                    children: [
+                      Container(
+                        height: 10,
+                        width: currentindex == 0 ? 30 : 10,
+                        margin: const EdgeInsets.only(right: 5),
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(20),
+                          color: currentindex == 0
+                              ? AppColors.orange
+                              : AppColors.gray,
+                        ),
+                      ),
+                      Container(
+                        height: 10,
+                        width: currentindex == 1 ? 30 : 10,
+                        margin: const EdgeInsets.only(right: 5),
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(20),
+                          color: currentindex == 1
+                              ? AppColors.orange
+                              : AppColors.gray,
+                        ),
+                      ),
+                      Container(
+                        height: 10,
+                        width: currentindex == 2 ? 30 : 10,
+                        margin: const EdgeInsets.only(right: 5),
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(20),
+                          color: currentindex == 2
+                              ? AppColors.orange
+                              : AppColors.gray,
+                        ),
+                      ),
+                    ],
                   ),
                 ),
         ],
