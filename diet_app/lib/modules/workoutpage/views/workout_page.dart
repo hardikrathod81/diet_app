@@ -95,65 +95,72 @@ class _WorkOutPageState extends State<WorkOutPage>
                                   scrollDirection: Axis.horizontal,
                                   itemCount: workoutimage.length,
                                   itemBuilder: (context, index) {
-                                    return InkWell(
-                                      onTap: () {
-                                        Navigator.push(
-                                          context,
-                                          MaterialPageRoute(
-                                            builder: (context) => route[0],
-                                          ),
-                                        );
-                                      },
-                                      child: Stack(
-                                        children: [
-                                          Padding(
-                                            padding: const EdgeInsets.symmetric(
-                                                horizontal: 10),
-                                            child: Container(
-                                              height: MediaQuery.sizeOf(context)
-                                                      .height *
-                                                  0.2,
-                                              width: MediaQuery.sizeOf(context)
-                                                      .width *
-                                                  1,
-                                              decoration: BoxDecoration(
-                                                image: DecorationImage(
-                                                  fit: BoxFit.fitWidth,
-                                                  image: AssetImage(
-                                                    workoutimage[index],
+                                    return Hero(
+                                      tag: 'ff',
+                                      child: InkWell(
+                                        onTap: () {
+                                          Navigator.push(
+                                            context,
+                                            MaterialPageRoute(
+                                              builder: (context) => route[0],
+                                            ),
+                                          );
+                                        },
+                                        child: Stack(
+                                          children: [
+                                            Padding(
+                                              padding:
+                                                  const EdgeInsets.symmetric(
+                                                      horizontal: 10),
+                                              child: Container(
+                                                height:
+                                                    MediaQuery.sizeOf(context)
+                                                            .height *
+                                                        0.2,
+                                                width:
+                                                    MediaQuery.sizeOf(context)
+                                                            .width *
+                                                        1,
+                                                decoration: BoxDecoration(
+                                                  image: DecorationImage(
+                                                    fit: BoxFit.fitWidth,
+                                                    image: AssetImage(
+                                                      workoutimage[index],
+                                                    ),
                                                   ),
+                                                  borderRadius:
+                                                      BorderRadius.circular(20),
                                                 ),
-                                                borderRadius:
-                                                    BorderRadius.circular(20),
                                               ),
                                             ),
-                                          ),
-                                          const Padding(
-                                            padding: EdgeInsets.only(top: 150),
-                                            child: Center(
-                                              child: CommonContainer(
-                                                  child: Column(
-                                                children: [
-                                                  TextWidgetTitle(
-                                                    text: "Day 01",
-                                                    fontSize: 17,
-                                                    color: AppColors.black,
-                                                  ),
-                                                  Padding(
-                                                    padding:
-                                                        EdgeInsets.symmetric(
-                                                            horizontal: 10),
-                                                    child: TextWidgetTitle(
-                                                      text: "7:00 AM-8:00 AM",
+                                            const Padding(
+                                              padding:
+                                                  EdgeInsets.only(top: 150),
+                                              child: Center(
+                                                child: CommonContainer(
+                                                    child: Column(
+                                                  children: [
+                                                    TextWidgetTitle(
+                                                      text: "Day 01",
                                                       fontSize: 17,
                                                       color: AppColors.black,
                                                     ),
-                                                  ),
-                                                ],
-                                              )),
-                                            ),
-                                          )
-                                        ],
+                                                    Padding(
+                                                      padding:
+                                                          EdgeInsets.symmetric(
+                                                              horizontal: 10),
+                                                      child: TextWidgetTitle(
+                                                        text: "7:00 AM-8:00 AM",
+                                                        fontSize: 17,
+                                                        color: AppColors.black,
+                                                      ),
+                                                    ),
+                                                  ],
+                                                )),
+                                              ),
+                                            )
+                                          ],
+                                        ),
                                       ),
                                     );
                                   },

@@ -165,56 +165,59 @@ class _WorkOutAndDietPageState extends State<WorkOutAndDietPage>
                     ),
                     SliverToBoxAdapter(
                       child: TableCalendar(
-                          formatAnimationDuration:
-                              const Duration(milliseconds: 500),
-                          calendarFormat: _onTap
-                              ? CalendarFormat.week
-                              : CalendarFormat.month,
-                          pageAnimationCurve: Curves.easeInOut,
-                          headerStyle: const HeaderStyle(
-                            titleCentered: true,
-                            titleTextStyle: TextStyle(
-                                color: AppColors.black,
-                                fontSize: 20,
-                                fontFamily: 'inter',
-                                fontWeight: FontWeight.bold),
-                            formatButtonVisible: false,
-                            leftChevronIcon: Icon(
-                              Icons.arrow_back_ios,
-                              color: AppColors.orange,
-                            ),
-                            rightChevronIcon: Icon(
-                              Icons.arrow_forward_ios,
-                              color: AppColors.orange,
-                            ),
+                        headerVisible: _onTap ? false : true,
+                        formatAnimationDuration:
+                            const Duration(milliseconds: 500),
+                        calendarFormat:
+                            _onTap ? CalendarFormat.week : CalendarFormat.month,
+                        pageAnimationCurve: Curves.easeInOut,
+                        headerStyle: const HeaderStyle(
+                          titleCentered: true,
+                          titleTextStyle: TextStyle(
+                              color: AppColors.black,
+                              fontSize: 20,
+                              fontFamily: 'inter',
+                              fontWeight: FontWeight.bold),
+                          formatButtonVisible: false,
+                          leftChevronIcon: Icon(
+                            Icons.arrow_back_ios,
+                            color: AppColors.orange,
                           ),
-                          calendarStyle: CalendarStyle(
-                              outsideTextStyle: const TextStyle(
-                                  color: Color.fromARGB(255, 194, 192, 192),
-                                  fontFamily: 'inter',
-                                  fontSize: 16,
-                                  fontWeight: FontWeight.bold),
-                              weekendTextStyle: const TextStyle(
-                                  color: AppColors.gray,
-                                  fontFamily: 'inter',
-                                  fontSize: 16,
-                                  fontWeight: FontWeight.bold),
-                              defaultTextStyle: const TextStyle(
-                                  color: AppColors.gray,
-                                  fontFamily: 'inter',
-                                  fontSize: 16,
-                                  fontWeight: FontWeight.bold),
-                              todayTextStyle: const TextStyle(
-                                fontFamily: 'inter',
-                                fontSize: 16,
-                                color: AppColors.white,
-                              ),
-                              todayDecoration: BoxDecoration(
-                                  color: AppColors.orange,
-                                  borderRadius: BorderRadius.circular(13))),
-                          focusedDay: DateTime.now(),
-                          firstDay: DateTime.utc(2022, 1, 1),
-                          lastDay: DateTime.utc(2024, 1, 1)),
+                          rightChevronIcon: Icon(
+                            Icons.arrow_forward_ios,
+                            color: AppColors.orange,
+                          ),
+                        ),
+                        calendarStyle: CalendarStyle(
+                          outsideTextStyle: const TextStyle(
+                              color: Color.fromARGB(255, 194, 192, 192),
+                              fontFamily: 'inter',
+                              fontSize: 16,
+                              fontWeight: FontWeight.bold),
+                          weekendTextStyle: const TextStyle(
+                              color: AppColors.gray,
+                              fontFamily: 'inter',
+                              fontSize: 16,
+                              fontWeight: FontWeight.bold),
+                          defaultTextStyle: const TextStyle(
+                              color: AppColors.gray,
+                              fontFamily: 'inter',
+                              fontSize: 16,
+                              fontWeight: FontWeight.bold),
+                          todayTextStyle: const TextStyle(
+                            fontFamily: 'inter',
+                            fontSize: 16,
+                            color: AppColors.white,
+                          ),
+                          todayDecoration: BoxDecoration(
+                            color: AppColors.orange,
+                            borderRadius: BorderRadius.circular(13),
+                          ),
+                        ),
+                        focusedDay: DateTime.now(),
+                        firstDay: DateTime.utc(2022, 1, 1),
+                        lastDay: DateTime.utc(2024, 1, 1),
+                      ),
                     ),
                   ],
                 ),
